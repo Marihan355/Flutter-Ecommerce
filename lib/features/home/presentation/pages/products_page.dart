@@ -9,6 +9,8 @@ import '../../../../widgets/bottom_nav_bar.dart';
 import '../../../auth/cubit/auth_cubit.dart';
 import '../../../auth/cubit/auth_state.dart';
 import '../../presentation/cubit/category_cubit.dart';
+import '../cubit/product_cubit.dart';
+import '../cubit/product_state.dart';
 import 'product_grid.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
@@ -21,7 +23,7 @@ class ProductsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CategoryCubit, List<String>>(
       builder: (context, categories) {
-        // Show loader while categories are being fetched
+        //show loader while categories are being fetched
         if (categories.isEmpty) {
           return const Scaffold(
             body: Center(child: CircularProgressIndicator()),
@@ -143,10 +145,35 @@ class ProductsPage extends StatelessWidget {
 
                 // Tab content
                 Expanded(
-                  child: TabBarView(
-                    children: categories
-                        .map((c) => ProductGrid(category: c))
-                        .toList(),
+                  child: BlocBuilder<ProductCubit, ProductState>(
+                    builder: (context, state) {
+                      if (state is ProductLoading) {
+                        return const Center(child: CircularProgressIndicator());
+                      } else if (state is ProductError) {
+                        return Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Icon(Icons.cloud_off, size: 50, color: Colors.grey),
+                              const SizedBox(height: 12),
+                              Text(state.message, style: const TextStyle(fontSize: 16)),
+                              const SizedBox(height: 12),
+                              ElevatedButton(
+                                onPressed: () => context.read<ProductCubit>().fetchProducts(),
+                                child: const Text("Retry"),
+                              ),
+                            ],
+                          ),
+                        );
+                      } else if (state is ProductLoaded) {
+                        return TabBarView(
+                          children: categories
+                              .map((c) => ProductGrid(category: c))
+                              .toList(),
+                        );
+                      }
+                      return const SizedBox.shrink();
+                    },
                   ),
                 ),
               ],
