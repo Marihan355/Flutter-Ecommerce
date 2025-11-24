@@ -1,0 +1,73 @@
+name: marihan_store
+description: A new flutter ecommerce
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  dio: ^5.2.1
+  flutter_bloc: ^8.1.3
+  equatable: ^2.0.5
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  shared_preferences: ^2.1.1
+  cached_network_image: ^3.2.3
+  flutter_screenutil: ^5.9.0
+  pretty_dio_logger: ^1.3.1
+  introduction_screen: ^4.0.0
+  flutter_svg: ^2.2.1
+  flutter_animate: ^4.2.0
+  flutter_rating_bar: ^4.0.1
+  easy_localization: ^3.0.8
+  data_connection_checker_nulls: ^0.0.2
+  convex_bottom_bar: ^3.2.0
+  circle_nav_bar: ^2.2.0
+  firebase_core: ^4.2.1
+  firebase_auth: ^6.1.2
+  liquid_swipe: ^3.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.1
+  build_runner: ^2.4.6
+  hive_generator: ^2.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+
+    - assets/lang/
+    - assets/fonts/playfair/
+    - assets/fonts/elmessiri/
+    - assets/fonts/notosans/
+
+  fonts:
+    - family: PlayfairDisplay
+      fonts:
+        - asset: assets/fonts/playfair/PlayfairDisplay-Regular.ttf
+        - asset: assets/fonts/playfair/PlayfairDisplay-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/playfair/PlayfairDisplay-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/playfair/PlayfairDisplay-Bold.ttf
+          weight: 700
+
+    - family: ElMessiri
+      fonts:
+        - asset: assets/fonts/elmessiri/ElMessiri-Regular.ttf
+        - asset: assets/fonts/elmessiri/ElMessiri-Bold.ttf
+          weight: 700
+
+    - family: NotoSans
+      fonts:
+        - asset: assets/fonts/notosans/NotoSans-Regular.ttf
+        - asset: assets/fonts/notosans/NotoSans-Bold.ttf
+          weight: 700
